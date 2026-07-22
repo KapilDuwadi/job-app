@@ -17,9 +17,10 @@ Two locations, deliberately separate:
 ```
 this-plugin/
 ├── .claude-plugin/plugin.json     # manifest + the data_dir setting
-├── commands/apply.md              # /job-app:apply <url>
+├── commands/                      # /job-app:apply <url>, /job-app:hunt [count]
 ├── skills/                        # curate-application, ingest-profile, parse-job-posting,
-│                                  #   tailor-resume, write-cover-letter, build-pdf
+│                                  #   tailor-resume, write-cover-letter, build-pdf,
+│                                  #   find-companies, hunt-jobs
 ├── agents/                        # job-analyst, resume-curator
 ├── templates/                     # resume/ (resume.cls, resume.tex), cover-letter/
 └── scripts/new-application-dir.sh
@@ -30,6 +31,8 @@ this-plugin/
 ├── profile/
 │   ├── personal.md                # name, contact, links, work authorization
 │   ├── master-resume.md           # your FULL history — tailoring selects from it
+│   ├── preferences.md             # hunt prefs: salary, remote, locations (default USA)
+│   ├── company-targets.md         # hunt watch-list: verified ATS boards to search
 │   ├── old-resume.pdf             # optional: parsed once into master-resume.md
 │   └── writing-samples/           # optional: prior letters/emails for voice matching
 └── applications/
@@ -97,6 +100,36 @@ inside Claude Code:
 The pipeline runs: **ensure profile → parse posting → analyze fit → tailor resume → draft cover
 letter → PAUSE for your review → build PDFs**. You review and edit the drafts before anything is
 finalized; results land in a dated folder under `~/.job-app/applications/`.
+
+## Hunt for matching jobs
+
+Don't have a posting yet? `/job-app:hunt` works the other direction — it discovers openings that fit
+**you**, ranks them against your CV, and hands the best ones straight to `/job-app:apply`.
+
+```
+/job-app:hunt          # or: /job-app:hunt 5   (cap the result count)
+```
+
+It runs: **ensure preferences → ensure a company watch-list → ask how many / how far back → fetch
+each company's openings → prefilter by your preferences → score against your CV → ranked list**.
+
+- **First run** bootstraps two files in `profile/`:
+  - `preferences.md` — salary floor, work mode (remote/hybrid/onsite), locations (**country defaults
+    to USA**), seniority, and keywords to seek/avoid. It's written as a placeholder and the hunt
+    **stops** until you fill it in.
+  - `company-targets.md` — a watch-list. The `find-companies` step suggests ~20 companies from your
+    skills and education, **you verify/edit the list**, then it auto-resolves each to a public ATS
+    board and saves only the ones that resolve.
+- Each result shows a match score, the role, location, posting date, and a direct apply URL. Pick any
+  and run `/job-app:apply <url>` to deep-tailor a resume + cover letter.
+
+**How it stays compliant:** the hunt reads only **public applicant-tracking boards** — Greenhouse,
+Lever, and Ashby JSON endpoints — never LinkedIn or any login-walled/scraped page.
+
+**Scope & limits:** results come only from companies on your watch-list (not a whole-market search),
+and only from those three ATS platforms — large employers on Workday/Taleo/custom boards are flagged
+`unresolved` for you to add a slug manually rather than guessed at. Re-run `find-companies` anytime to
+widen the list.
 
 ## Customizing the look
 
