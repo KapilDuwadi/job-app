@@ -1,0 +1,19 @@
+{
+  "name": "job-app",
+  "displayName": "Job Application Curator",
+  "version": "0.1.0",
+  "description": "Hand-curate a tailored resume and cover letter (LaTeX -> PDF) for a job posting URL, reading your private profile from a configured data directory.",
+  "author": {
+    "name": "duwa982"
+  },
+  "license": "MIT",
+  "keywords": ["resume", "cover-letter", "latex", "job-application", "ats"],
+  "userConfig": {
+    "data_dir": {
+      "type": "directory",
+      "title": "Profile data directory",
+      "description": "Your private folder holding profile/ (personal.md, master-resume.md, optional old-resume.pdf) and applications/ output. Recommended: ~/.job-app. Kept separate from this plugin so no private data ships with it.",
+      "required": true
+    }
+  }
+}

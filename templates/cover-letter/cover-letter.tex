@@ -1,0 +1,76 @@
+% cover-letter.tex — matching letterhead + business-letter layout.
+% Ships with PLACEHOLDER content so it compiles standalone.
+% The write-cover-letter skill copies this into an application folder and fills it in.
+%
+% Compile:  tectonic cover-letter.tex   (self-contained — no external .cls needed)
+%
+% LaTeX-escaping reminder: escape & % $ # _ { } ~ ^
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=1.9cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{parskip}          % paragraph spacing instead of indents (letter style)
+
+\definecolor{accent}{HTML}{2B3A55}
+\definecolor{muted}{HTML}{555555}
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent, pdfborder={0 0 0}}
+
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+
+% ---- Letterhead (mirror the resume header) --------------------------------
+{\huge\bfseries\color{accent} Firstname Lastname\par}
+\vspace{2pt}
+{\small\color{muted}%
+  you@example.com \quad|\quad (555) 123-4567 \quad|\quad
+  \href{https://linkedin.com/in/you}{linkedin.com/in/you}\par}
+\vspace{4pt}
+{\color{accent}\rule{\linewidth}{0.8pt}}
+
+\vspace{12pt}
+
+% ---- Date + addressee -----------------------------------------------------
+Month DD, YYYY
+
+\vspace{8pt}
+
+Hiring Manager\\
+Company Name\\
+City, ST
+
+\vspace{12pt}
+
+Dear Hiring Manager,
+
+\vspace{6pt}
+
+% ---- Body (3--4 short paragraphs; see voice-and-structure.md) --------------
+% 1) Hook: which role, and one sentence on why you + this company specifically.
+Opening paragraph naming the role and the company, and the specific reason you are
+writing to \emph{them} (a product, a mission, a problem you can solve) --- not a generic
+"I am excited to apply."
+
+% 2) Evidence: your strongest 1--2 stories mapped to their top needs.
+Middle paragraph with concrete evidence: the one or two accomplishments from your
+background that most directly address what the posting asks for, with real outcomes.
+Show, don't claim.
+
+% 3) Fit: why this is a two-way match; what you'd contribute early.
+Third paragraph connecting your trajectory to where the team is going, and what you
+would contribute in the first few months.
+
+% 4) Close: clear, warm, low-pressure.
+Closing paragraph: a confident, brief note of thanks and an invitation to talk.
+
+\vspace{8pt}
+
+Sincerely,\\[6pt]
+Firstname Lastname
+
+\end{document}

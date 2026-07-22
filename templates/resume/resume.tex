@@ -1,0 +1,55 @@
+% resume.tex — CONTENT ONLY. Styling lives in resume.cls.
+% This ships with neutral PLACEHOLDER content so the template compiles standalone.
+% The tailor-resume skill copies this file into an application folder and replaces
+% the placeholders with content selected/rewritten from the user's master-resume.md.
+%
+% Compile:  tectonic resume.tex   (requires resume.cls in the same directory)
+%
+% LaTeX-escaping reminder for whoever fills this in: escape & % $ # _ { } ~ ^
+% e.g.  R\&D   30\%   \#1   C\#   file\_name
+\documentclass{resume}
+
+\begin{document}
+
+% \resumeheader{Name}{Tagline / target role}{contact line}
+\resumeheader
+  {Firstname Lastname}
+  {Senior Software Engineer}
+  {%
+    \href{mailto:you@example.com}{you@example.com} \quad|\quad
+    (555) 123-4567 \quad|\quad
+    City, ST \quad|\quad
+    \href{https://linkedin.com/in/you}{linkedin.com/in/you} \quad|\quad
+    \href{https://github.com/you}{github.com/you}%
+  }
+
+\section{Summary}
+One to three lines positioning you for THIS role. Lead with years of experience,
+core domain, and the single most relevant strength. Rewritten per job --- keep it
+specific, drop the buzzwords.
+
+\section{Experience}
+
+\experience{Senior Software Engineer}{Acme Corp}{Remote}{2022 -- Present}
+\begin{bullets}
+  \item Led \textbf{X} that produced \textbf{measurable result} (e.g. cut p95 latency 40\%),
+        using the technologies the target role names.
+  \item Owned \textbf{scope}; delivered \textbf{outcome} for \textbf{who benefited}.
+  \item Bullet = action verb + what you did + quantified impact. No responsibilities-lists.
+\end{bullets}
+
+\experience{Software Engineer}{Globex}{City, ST}{2019 -- 2022}
+\begin{bullets}
+  \item Built \textbf{thing} that \textbf{result}, mirroring a keyword from the posting honestly.
+  \item Improved \textbf{metric} from A to B by \textbf{approach}.
+\end{bullets}
+
+\section{Skills}
+\skillline{Languages}{Python, Go, TypeScript, SQL}
+\skillline{Infra}{AWS, Docker, Kubernetes, Terraform}
+\skillline{Data}{Postgres, dbt, Spark, Airflow}
+
+\section{Education}
+\education{B.S. Computer Science}{State University}{City, ST}{2015 -- 2019}
+
+\end{document}

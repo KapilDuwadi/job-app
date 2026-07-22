@@ -1,0 +1,10 @@
+{
+  "name": "job-app",
+  "owner": { "name": "duwa982" },
+  "plugins": [
+    {
+      "name": "job-app",
+      "source": "./"
+    }
+  ]
+}
