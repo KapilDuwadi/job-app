@@ -41,18 +41,48 @@ this-plugin/
         └── notes.md
 ```
 
+## Installation
+
+This plugin ships through a Claude Code **plugin marketplace** hosted in this repo. Install it from
+inside Claude Code:
+
+1. **Add the marketplace** (points Claude Code at this repo):
+
+   ```
+   /plugin marketplace add KapilDuwadi/job-app
+   ```
+
+   You can also use the full URL — `/plugin marketplace add https://github.com/KapilDuwadi/job-app`
+   — or a local path if you've cloned it — `/plugin marketplace add /path/to/job-app`.
+
+2. **Install the plugin** from that marketplace:
+
+   ```
+   /plugin install job-app@job-app
+   ```
+
+   (The format is `<plugin>@<marketplace>`; both are named `job-app` here.) You can also browse and
+   install interactively by running `/plugin` and selecting **job-app**.
+
+3. **Set the `data_dir` config** when prompted — this is your private profile folder (e.g.
+   `~/.job-app`), kept separate from the plugin so no private data ships with it. This is required
+   before the first run.
+
+4. **Verify** the install: run `/help` and confirm `/job-app:apply` appears in the command list.
+
+> **Updating:** `/plugin marketplace update job-app` refreshes the marketplace, then re-run
+> `/plugin install job-app@job-app`. **Uninstalling:** `/plugin uninstall job-app@job-app`.
+
 ## Setup
 
 1. **Install Tectonic** (the LaTeX engine — self-contained, auto-fetches packages):
    - Windows: `winget install TectonicTypesetting.Tectonic`
    - Cargo:   `cargo install tectonic`
    - Scoop:   `scoop install tectonic`
+   - macOS:   `brew install tectonic`
    - Verify: `tectonic --version`
 
-2. **Install the plugin** in Claude Code and set its **`data_dir`** config to your private folder
-   (e.g. `~/.job-app`). This is prompted via the plugin's `userConfig`.
-
-3. **Populate your profile.** The first run bootstraps this for you:
+2. **Populate your profile.** The first run bootstraps this for you:
    - If `~/.job-app/profile/` is empty, the `ingest-profile` step writes placeholder
      `personal.md` and `master-resume.md` and stops so you can fill them in.
    - Or drop an existing resume at `~/.job-app/profile/old-resume.pdf` — it gets parsed once into
